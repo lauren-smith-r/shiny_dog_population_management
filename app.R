@@ -10,9 +10,7 @@ require(tidyverse)
 require(Rcapture)
 require(dplyr)
 require(DT)
-# library(rsconnect)
 
-# rsconnect::deployApp("~/Dropbox/Leeds Postdoc/Shinyapp/Shiny_app_full/Dog_Population_Management")
 
 saveData <- function(data) { # saves the output of systems model simulation each time simulation is run
   data <- as.data.frame(t(data))
