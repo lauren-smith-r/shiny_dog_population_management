@@ -462,7 +462,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                     and Istituto Zooprofilattico Sperimentale dell’Abruzzo e del Molise “Giuseppe Caporale”. The STRAYS project was funded by VIER PFOTEN International. VIER PFOTEN relies on donations to fund projects focused on 
                                     animal rescue and welfare. You can donate", tags$a("here.", href="https://secure.four-paws.org/donate?utm_source=smith-university-of-leeds&utm_medium=affiliate&utm_campaign=researchproject")),
                                     br(),
-                                    h5("All modelling code for both the", (em(strong("Assess the impact of your interventions"))), " simulation and ", (em(strong("Estimate dog population size"))), "can be found on ", tags$a("GitHub", href="https://github.com/lauren-smith-r?tab=repositories")),
+                                    h5("All modelling code for both the", (em(strong("Assess the impact of your interventions"))), " simulation and ", (em(strong("Estimate dog population size"))), "can be found on ", tags$a("GitHub", href="https://github.com/lauren-smith-r/shiny_dog_population_management")),
                                     br(),
                                     br(),
                                     br(),
