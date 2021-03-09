@@ -1,0 +1,10 @@
+name: dog_population_management
+title:
+username:
+account: smith-university-of-leeds
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3500483
+bundleId: 4295760
+url: https://smith-university-of-leeds.shinyapps.io/dog_population_management/
+when: 1614785554.8054
