@@ -41,7 +41,8 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                              br(), # adds paragraph break
                                              br(),
                                              p("There is a growing need to assess the impact of dog population management interventions."), # adds paragraph
-                                             p("This website helps you to", strong( "estimate"), "local dog population sizes and", strong("assess"), "the potential impact of your interventions."),
+                                             p("This website helps you to", strong( "estimate"), "local dog population sizes and", strong("assess"), "the potential impact of your neutering and 
+                                               responsible dog ownership interventions."),
                                              br(),
                                              p(strong("Select from the tabs above to get started!")), # adds bold text in paragraph
                                              br(),
@@ -239,25 +240,28 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li("Selecting the most appropriate method will depend on whether you wish to estimate the total number of dogs in the area,
                                                            or you simply want to track trends in population size."),
                                                    tags$li("You may need to estimate the total number of dogs in your area if you want to:",
-                                                     tags$ul( # Creates a sub-bullet pointed list
-                                                       tags$li("Plan dog population management interventions, such as those aiming to reduce free-roaming dog population size.
-                                                               You need an estimate of the dog population size so you can plan resources to ensure a high dog population management coverage."),
-                                                       tags$li("Plan public health interventions, such as mass rabies vaccination. You need an estimate of the dog population size so that you
-                                                               can plan resources to ensure a high vaccination coverage.")
-                                                     ),
-                                                   tags$li("Population estimation methods include:"),
                                                            tags$ul( # Creates a sub-bullet pointed list
-                                                              tags$li("Lincoln-Petersen Estimator – method available in this website."),
-                                                              tags$li("Closed mark-recapture – method available in this website."),
-                                                              tags$li(tags$a("Application Super-Duplicates",
-                                                                  href="https://www.frontiersin.org/articles/10.3389/fvets.2018.00104/full")), # adds website link to Tiwari et al, 2018 paper
+                                                             tags$li("Plan dog population management interventions, such as those aiming to reduce free-roaming dog population size.
+                                                               You need an estimate of the dog population size so you can plan resources to ensure a high dog population management coverage."),
+                                                             tags$li("Plan public health interventions, such as mass rabies vaccination. You need an estimate of the dog population size so that you
+                                                               can plan resources to ensure a high vaccination coverage.")
+                                                           ),
+                                                           tags$li("Population estimation methods include:"),
+                                                           tags$ul( # Creates a sub-bullet pointed list
+                                                             tags$li("Lincoln-Petersen Estimator – method available in this website."),
+                                                             tags$li("Closed mark-recapture – method available in this website."),
+                                                             tags$li(tags$a("Application Super-Duplicates",
+                                                                            href="https://chao.shinyapps.io/SuperDuplicates/"), "as described by ",
+                                                                     tags$a("Tiwari et al (2018).", href="https://www.frontiersin.org/articles/10.3389/fvets.2018.00104/full"), strong("Please note:"),
+                                                                     "this method estimates", strong("70% of the total population."), "If a total population estimate is desired, 
+                                                                  the user must extrapolate from the 70% estimate to give a total population estimate"), # adds website link to Tiwari et al, 2018 paper
                                                            )
-                                                     ),
+                                                   ), #  
                                                    tags$li("You may wish to use simple count methods to monitor trends in population size, for example after you have applied your dog population 
                                                    management/mass vaccination intervention. Guidance on how to apply simple count methods are available in the ",
                                                            tags$a("ICAM dog population management handbook",
-                                                                  href="https://www.icam-coalition.org/downloads/") # adds website link to ICAM's guidebook
-                                                           ),
+                                                                  href="https://www.icam-coalition.org/download/are-we-making-a-difference/") # adds website link to ICAM's guidebook
+                                                   ),
                                                    tags$li("In this website, if you are using photographic methods of identifying dogs, you can use either the Lincoln-Petersen or closed mark-recapture
                                                            method. If you are using a physical marking method (such as red dye), you should use the Lincoln-Petersen method. Note: the Lincoln-Petersen
                                                            method requires two days of surveys and the closed mark-recapture method requires three days of surveys. The closed mark-recapture method 
@@ -267,7 +271,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                              tags$li("The population estimation methods and simple count methods are suitable for both urban and rural areas.")
                                                            )
                                                    )
-                                                    ),
+                                                 ),
                                                  br(),
                                                  tags$li("What time of day should I conduct surveys?"),
                                                  tags$ul( # Creates a sub-bullet pointed list
@@ -278,7 +282,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li("It is important to remember that surveys should be completed without making extra effort to observe dogs in areas where you have seen dogs before, as this can lead to over-estimates 
                                                            of dog population size. You should survey your pre-determined route in an unbiased manner and maintain a consistent effort to observe and record dogs throughout the survey. See the ",
                                                            strong("How to conduct a street survey"), "section of this website and watch our video for more details.")
-                                                   ),
+                                                 ),
                                                  br(),
                                                  tags$li("How much of the survey area should I survey?"),
                                                  tags$ul( # Creates a sub-bullet pointed list
@@ -389,10 +393,10 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                         h4("Input parameters"),
                                                         
                                                         # numeric inputs of the different population sizes, starts with value = 
-                                                        numericInput("St", label = h4("Provide an estimate of the number of intact street dogs in the population."), value = 23650),
-                                                        numericInput("Sh", label = h4("Provide an estimate of the number of dogs in shelters in the population."), value = 2086),
-                                                        numericInput("Ow", label = h4("Provide an estimate of the number of owned dogs in the population."), value = 98358),
-                                                        numericInput("Ne", label = h4("Provide an estimate of the number of neutered street dogs in the population."), value = 0)
+                                                        numericInput("St", label = h4("Provide an estimate of the number of intact street dogs in the population."), value = 0), # test value 23650
+                                                        numericInput("Ne", label = h4("Provide an estimate of the number of neutered street dogs in the population."), value = 0),
+                                                        numericInput("Sh", label = h4("Provide an estimate of the number of dogs in shelters in the population."), value = 0), # test value 2086
+                                                        numericInput("Ow", label = h4("Provide an estimate of the number of owned dogs in the population."), value = 0) # test value 98358
                                                  ),
                                                  
                                                  column(4, offset = 1, # sets second column of input parameters
@@ -406,23 +410,23 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                         radioButtons("st_adoption", h4("Estimated rate dogs are adopted to home from the street"),
                                                                      choices = list("Low" = "st_ad_low", "Medium" = "st_ad_med",
                                                                                     "High" = "st_ad_high"), selected = "st_ad_med"),
+                                                        radioButtons("relinquish_rate", h4("Estimated rate dogs relinquished from homes to the shelters"),
+                                                                     choices = list("Low" = "rel_low", "Medium" = "rel_med",
+                                                                                    "High" = "rel_high"), selected = "rel_med"),
                                                         radioButtons("shelter_adoption_rate", h4("Estimated rate dogs are adopted from local shelters **"),
                                                                      choices = list("Low" = "shelter_adoption_low", "Medium" = "shelter_adoption_medium",
                                                                                     "High" = "shelter_adoption_high", "Very high" = "shelter_adoption_very_high"), selected = "shelter_adoption_medium"),
-                                                        radioButtons("relinquish_rate", h4("Estimated rate dogs abandoned from homes to the shelters"),
-                                                                     choices = list("Low" = "rel_low", "Medium" = "rel_med",
-                                                                                    "High" = "rel_high"), selected = "rel_med"),
                                                         p("* select low rates to simulate responsible ownership interventions"), # adds notes on how to apply a responsible ownership intervention
                                                         p("** select high rates to simulate responsible ownership interventions")
                                                  ),
                                                  
                                                  column(4, # third column
                                                         # allows user to select value between 0 and 1 using a slider at 0.05 step-size intervals
-                                                        sliderInput("neuter_rate", label = h4("Proportion of population you aim to neuter over one year", p(em("(e.g., 0.5 = 50%)"))), min = 0,
+                                                        sliderInput("neuter_rate", label = h4("Proportion of intact dog population you aim to neuter over one year", p(em("(e.g., 0.5 = 50%)"))), min = 0,
                                                                     max = 1, value = 0.5, step = 0.05),
                                                         
                                                         # adds radio-button options for intervention input parameters
-                                                        radioButtons("int_length", h4("How long to you plan to neuter this percentage of the population per year?"), 
+                                                        radioButtons("int_length", h4("How many years do you plan to neuter this percentage of the intact population each year?"), 
                                                                      choices = list("1 year" = "int_length_1_year",
                                                                                     
                                                                                     "2 years" = "int_length_2_years",
