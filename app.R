@@ -10,7 +10,9 @@ require(tidyverse)
 require(Rcapture)
 require(dplyr)
 require(DT)
+# library(rsconnect)
 
+# rsconnect::deployApp("~/Dropbox/Leeds Postdoc/Shinyapp/Shiny_app_full/Dog_Population_Management")
 
 saveData <- function(data) { # saves the output of systems model simulation each time simulation is run
   data <- as.data.frame(t(data))
@@ -240,28 +242,28 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li("Selecting the most appropriate method will depend on whether you wish to estimate the total number of dogs in the area,
                                                            or you simply want to track trends in population size."),
                                                    tags$li("You may need to estimate the total number of dogs in your area if you want to:",
-                                                           tags$ul( # Creates a sub-bullet pointed list
-                                                             tags$li("Plan dog population management interventions, such as those aiming to reduce free-roaming dog population size.
+                                                     tags$ul( # Creates a sub-bullet pointed list
+                                                       tags$li("Plan dog population management interventions, such as those aiming to reduce free-roaming dog population size.
                                                                You need an estimate of the dog population size so you can plan resources to ensure a high dog population management coverage."),
-                                                             tags$li("Plan public health interventions, such as mass rabies vaccination. You need an estimate of the dog population size so that you
+                                                       tags$li("Plan public health interventions, such as mass rabies vaccination. You need an estimate of the dog population size so that you
                                                                can plan resources to ensure a high vaccination coverage.")
-                                                           ),
-                                                           tags$li("Population estimation methods include:"),
+                                                     ),
+                                                   tags$li("Population estimation methods include:"),
                                                            tags$ul( # Creates a sub-bullet pointed list
-                                                             tags$li("Lincoln-Petersen Estimator – method available in this website."),
-                                                             tags$li("Closed mark-recapture – method available in this website."),
-                                                             tags$li(tags$a("Application Super-Duplicates",
-                                                                            href="https://chao.shinyapps.io/SuperDuplicates/"), "as described by ",
-                                                                     tags$a("Tiwari et al (2018).", href="https://www.frontiersin.org/articles/10.3389/fvets.2018.00104/full"), strong("Please note:"),
-                                                                     "this method estimates", strong("70% of the total population."), "If a total population estimate is desired, 
+                                                              tags$li("Lincoln-Petersen Estimator – method available in this website."),
+                                                              tags$li("Closed mark-recapture – method available in this website."),
+                                                              tags$li(tags$a("Application Super-Duplicates",
+                                                                  href="https://chao.shinyapps.io/SuperDuplicates/"), "as described by ",
+                                                                  tags$a("Tiwari et al (2018).", href="https://www.frontiersin.org/articles/10.3389/fvets.2018.00104/full"), strong("Please note:"),
+                                                                  "this method estimates", strong("70% of the total population."), "If a total population estimate is desired, 
                                                                   the user must extrapolate from the 70% estimate to give a total population estimate"), # adds website link to Tiwari et al, 2018 paper
-                                                           )
-                                                   ), #  
+                                                              )
+                                                     ), #  
                                                    tags$li("You may wish to use simple count methods to monitor trends in population size, for example after you have applied your dog population 
                                                    management/mass vaccination intervention. Guidance on how to apply simple count methods are available in the ",
                                                            tags$a("ICAM dog population management handbook",
                                                                   href="https://www.icam-coalition.org/download/are-we-making-a-difference/") # adds website link to ICAM's guidebook
-                                                   ),
+                                                           ),
                                                    tags$li("In this website, if you are using photographic methods of identifying dogs, you can use either the Lincoln-Petersen or closed mark-recapture
                                                            method. If you are using a physical marking method (such as red dye), you should use the Lincoln-Petersen method. Note: the Lincoln-Petersen
                                                            method requires two days of surveys and the closed mark-recapture method requires three days of surveys. The closed mark-recapture method 
@@ -271,7 +273,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                              tags$li("The population estimation methods and simple count methods are suitable for both urban and rural areas.")
                                                            )
                                                    )
-                                                 ),
+                                                    ),
                                                  br(),
                                                  tags$li("What time of day should I conduct surveys?"),
                                                  tags$ul( # Creates a sub-bullet pointed list
@@ -282,13 +284,13 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li("It is important to remember that surveys should be completed without making extra effort to observe dogs in areas where you have seen dogs before, as this can lead to over-estimates 
                                                            of dog population size. You should survey your pre-determined route in an unbiased manner and maintain a consistent effort to observe and record dogs throughout the survey. See the ",
                                                            strong("How to conduct a street survey"), "section of this website and watch our video for more details.")
-                                                 ),
+                                                   ),
                                                  br(),
                                                  tags$li("How much of the survey area should I survey?"),
                                                  tags$ul( # Creates a sub-bullet pointed list
                                                    tags$li("If your town/city/area is small enough, you can conduct a survey covering the whole area. If your town/city/area is too large to survey the total area, you need to select several 
                                                            survey areas, aiming to cover about 10% of the total area."),
-                                                   tags$li("Details on how to split a larger area into smaller block are available in the", strong("How to conduct a street survey” section of the website."))
+                                                   tags$li("Details on how to split a larger area into smaller block are available in the", strong("How to conduct a street survey section of the website."))
                                                  )
                                                )
                                       )
@@ -371,11 +373,13 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                           plotOutput("graph1"), # outputs graph of estimated population size change
                                                           h4("Population size change:"),
                                                           tableOutput("population_estimates"), # outputs table of results for population size change
-                                                          tableOutput("pop_size_table") # outputs table of results of dog population size for every year simulated
-                                                 ),
+                                                          tableOutput("pop_size_table"), # outputs table of results of dog population size for every year simulated
+                                                          tableOutput("no.neutered_dogs")
+                                                ),
                                                  tabPanel("Estimated cost and welfare impact", # second tab of results "Estimated cost and welfare impact"
-                                                          tableOutput("costs_table"), # outputs table of estimated costs
-                                                          tableOutput("welfare_table") # outputs table of estimated welfare impact
+                                                          # tableOutput("costs_table"), # outputs table of estimated costs
+                                                          tableOutput("welfare_table"), # outputs table of estimated welfare impact
+                                                          tableOutput("Number_neutered_table_output") # outputs table of number of dogs needed to be neutered per month/year
                                                  ),
                                                  tabPanel("Log of simulations", # third tab of results "Log of simulations"
                                                           dataTableOutput("responses") # outputs each logged simulation for that period of activity on the website
@@ -393,50 +397,60 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                         h4("Input parameters"),
                                                         
                                                         # numeric inputs of the different population sizes, starts with value = 
-                                                        numericInput("St", label = h4("Provide an estimate of the number of intact street dogs in the population."), value = 0), # test value 23650
-                                                        numericInput("Ne", label = h4("Provide an estimate of the number of neutered street dogs in the population."), value = 0),
-                                                        numericInput("Sh", label = h4("Provide an estimate of the number of dogs in shelters in the population."), value = 0), # test value 2086
-                                                        numericInput("Ow", label = h4("Provide an estimate of the number of owned dogs in the population."), value = 0) # test value 98358
+                                                        numericInput("St", label = h4("Provide an estimate of the number of ", strong("intact street"), "dogs in the population."), value = 23650), # test value 23650
+                                                        numericInput("Ne", label = h4("Provide an estimate of the number of ", strong("neutered street"), "dogs in the population."), value = 0),
+                                                        numericInput("Sh", label = h4("Provide an estimate of the number of ", strong("dogs in shelters"), "in the population."), value = 2086), # test value 2086
+                                                        numericInput("Ow", label = h4("Provide an estimate of the number of ", strong("owned dogs"), "in the population."), value = 98358) # test value 98358
                                                  ),
                                                  
                                                  column(4, offset = 1, # sets second column of input parameters
                                                         
                                                         # allows user to input low-high rates using radiobuttons
-                                                        radioButtons("r_st", h4("Estimated rate the street dog population grows (e.g. through births and immigration)"), 
-                                                                     choices = list("Low" = "r_st_low", "Medium" = "r_st_med","High" = "r_st_high"), select = "r_st_med"),
-                                                        radioButtons("abandonment_rate", h4("Estimated rate dogs are abandoned from homes to the street *"),
-                                                                     choices = list("Very Low" = "abandonment_very_low", "Low" = "abandonment_low", "Medium" = "abandonment_medium",
-                                                                                    "High" = "abandonment_high"), selected = "abandonment_medium"),
-                                                        radioButtons("st_adoption", h4("Estimated rate dogs are adopted to home from the street"),
-                                                                     choices = list("Low" = "st_ad_low", "Medium" = "st_ad_med",
-                                                                                    "High" = "st_ad_high"), selected = "st_ad_med"),
-                                                        radioButtons("relinquish_rate", h4("Estimated rate dogs relinquished from homes to the shelters"),
-                                                                     choices = list("Low" = "rel_low", "Medium" = "rel_med",
-                                                                                    "High" = "rel_high"), selected = "rel_med"),
-                                                        radioButtons("shelter_adoption_rate", h4("Estimated rate dogs are adopted from local shelters **"),
-                                                                     choices = list("Low" = "shelter_adoption_low", "Medium" = "shelter_adoption_medium",
-                                                                                    "High" = "shelter_adoption_high", "Very high" = "shelter_adoption_very_high"), selected = "shelter_adoption_medium"),
+                                                        radioButtons("r_st", h4("How fast does your street dog population grow (e.g. through births and immigration)?"), 
+                                                                     choices = list("Slow" = "r_st_low", "Medium" = "r_st_med","Fast" = "r_st_high"), select = "r_st_med"),
+                                                        # radioButtons("abandonment_rate", h4("Estimated rate dogs are abandoned from homes to the street *"),
+                                                        #              choices = list("Very Low" = "abandonment_very_low", "Low" = "abandonment_low", "Medium" = "abandonment_medium",
+                                                        #                             "High" = "abandonment_high"), selected = "abandonment_medium"),
+                                                        sliderInput("abandonment_rate", label = h4("Percentage (%) of owned dogs that are abandoned from homes to the street per year*"), min = 0,
+                                                                    max = 100, value = 5, step = (0.005*100)),
+                                                        # radioButtons("st_adoption", h4("Estimated rate dogs are adopted to home from the street"),
+                                                        #              choices = list("Low" = "st_ad_low", "Medium" = "st_ad_med",
+                                                        #                             "High" = "st_ad_high"), selected = "st_ad_med"),
+                                                        sliderInput("st_adoption", label = h4("Percentage (%) of street dogs adopted to homes from the street per year"), min = 0,
+                                                                    max = 1*100, value = 0.08*100, step = 0.005*100),
+                                                        # radioButtons("relinquish_rate", h4("Estimated rate dogs relinquished from homes to the shelters"),
+                                                        #              choices = list("Low" = "rel_low", "Medium" = "rel_med",
+                                                        #                             "High" = "rel_high"), selected = "rel_med"),
+                                                        sliderInput("relinquish_rate", label = h4("Percentage (%) owned dogs that are relinquished to shelters per year"), min = 0,
+                                                                    max = 100, value = 0.008*100, step = 0.0005*100),
+                                                        # radioButtons("shelter_adoption_rate", h4("Estimated rate dogs are adopted from local shelters **"),
+                                                        #              choices = list("Low" = "shelter_adoption_low", "Medium" = "shelter_adoption_medium",
+                                                        #                             "High" = "shelter_adoption_high", "Very high" = "shelter_adoption_very_high"), selected = "shelter_adoption_medium"),
+                                                        sliderInput("shelter_adoption_rate", label = h4("Percentage (%) of shelter dog population that is adopted from shelters to homes per year"), min = 0,
+                                                                    max = 1*100, value = 0.3*100, step = 0.05*100),
                                                         p("* select low rates to simulate responsible ownership interventions"), # adds notes on how to apply a responsible ownership intervention
                                                         p("** select high rates to simulate responsible ownership interventions")
                                                  ),
                                                  
                                                  column(4, # third column
+                                                        radioButtons("neut_num_per", h4("Select whether you would like to simulate an intervention by neutering a:"),
+                                                                     choices = list("(a) percentage of the intact dog population (e.g. 50% per year)" = "percentage_to_neuter",
+                                                                                    "(b) number of intact dogs (e.g. 1000 dogs per year)" = "number_to_neuter"),
+                                                        selected = "percentage_to_neuter"),
+                                                        p("Input below either (a) percentage of the intact dog population, or (b) number of intact dogs to be neutered."),
                                                         # allows user to select value between 0 and 1 using a slider at 0.05 step-size intervals
-                                                        sliderInput("neuter_rate", label = h4("Proportion of intact dog population you aim to neuter over one year", p(em("(e.g., 0.5 = 50%)"))), min = 0,
-                                                                    max = 1, value = 0.5, step = 0.05),
+                                                        sliderInput("neuter_rate", label = h4("(a) percentage (%) of intact dog population you aim to neuter over one year ***"), min = 0,
+                                                                    max = 100, value = 0, step = 1),
+                                                        numericInput("num_neuter", label = h4("(b) number of intact dogs you aim to neuter per month (select continuously below)
+                                                                                              or year (select annually below ***"), value = 0),
                                                         
                                                         # adds radio-button options for intervention input parameters
                                                         radioButtons("int_length", h4("How many years do you plan to neuter this percentage of the intact population each year?"), 
                                                                      choices = list("1 year" = "int_length_1_year",
-                                                                                    
                                                                                     "2 years" = "int_length_2_years",
-                                                                                    
                                                                                     "3 years" = "int_length_3_years",
-                                                                                    
                                                                                     "5 years" = "int_length_5_years",
-                                                                                    
                                                                                     "10 years" = "int_length_10_years",
-                                                                                    
                                                                                     "Ongoing (continuous intervention)" = "int_length_continuous"),
                                                                      selected = "int_length_5_years"),
                                                         
@@ -449,7 +463,11 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                                      choices = list("5 years" = "length_5_years", "10 years" = "length_10_years",
                                                                                     "15 years" = "length_15_years", "25 years" = "length_25_years",
                                                                                     "50 years" = "length_50_years"), selected = "length_5_years"),
-                                                        actionButton(inputId = "go", label = "Simulate results") # will only simulate results when go button is pressed
+                                                        actionButton(inputId = "go", label = "Simulate results"), # will only simulate results when go button is pressed
+                                                        br(),
+                                                        br(),
+                                                        p("*** If the number to be neutered
+                                                          is higher than the total population size the simulation may return negative total population size values.")
                                                  ),
                                                  
                                                  
@@ -594,10 +612,10 @@ server <- function(input, output, session) {
         my_death_rate_function <- approxfun(x=x.stock, y=y.rate, rule = 2)
         
         #  differential equations describing the flows between the street, shelter, and owned dog populations
-        dSt_dt <- r_st*St*(1 - (St+Ne)/K_st) + abandonment_rate*Ow - st_adoption*St - (sheltering_I * sheltering * St) - (culling_I * cull_rate * St) - (CNR_I * neuter_rate * St) # # equation for intact street dog population
+        dSt_dt <- r_st*St*(1 - (St+Ne)/K_st) + abandonment_rate*Ow - st_adoption*St - (sheltering_I * sheltering * St) - (culling_I * cull_rate * St) - (CNR_I * neuter_rate * St) - (CNR_I*(num_neuter)) # # equation for intact street dog population
         dSh_dt <- relinquish_rate*Ow - shelter_adoption_rate*Sh - shelter_death*Sh + (sheltering_I * sheltering * St) # equation for shelter dog population
         dOw_dt <- r_ow*Ow*(1 - Ow/K_ow) + shelter_adoption_rate*Sh + st_adoption*St - abandonment_rate*Ow - relinquish_rate*Ow # equation for owned dog population
-        dNe_dt <- - my_death_rate_function(Ne+St) * Ne - st_adoption*Ne + (CNR_I * neuter_rate * St) # equation for neutered street dog population
+        dNe_dt <- - my_death_rate_function(Ne+St) * Ne - st_adoption*Ne + (CNR_I * neuter_rate * St) + (CNR_I*(num_neuter))# equation for neutered street dog population
         
         return(list(c(dSt_dt, dSh_dt, dOw_dt, dNe_dt),
                     sheltering_I = sheltering_I,
@@ -620,16 +638,21 @@ server <- function(input, output, session) {
                       r_ow = 0.07, # Maximum growth rate of owned dog population
                       K_st=input$St, # Carrying capacity of street dog population
                       K_ow=input$Ow, # Carrying capacity of owned dog population
-                      abandonment_rate = switch(input$abandonment_rate, "abandonment_very_low" = 0.0001, "abandonment_low" = 0.001, "abandonment_medium" = 0.003, "abandonment_high" = 0.009), # Abandonment rate of owned dogs to street dog population
-                      st_adoption = switch(input$st_adoption, "st_ad_low" = 0.004, "st_ad_med" = 0.007, "st_ad_high" = 0.01), # Adoption rate of street dogs to owned dog population
-                      shelter_adoption_rate = switch(input$shelter_adoption_rate, "shelter_adoption_low" = 0.005, "shelter_adoption_medium" = 0.025, "shelter_adoption_high" = 0.0475, "shelter_adoption_very_high" = 0.08), # Adoption rate of shelter dogs to owned dog popualation
-                      relinquish_rate = switch(input$relinquish_rate, "rel_low" = 0.0004, "rel_med" = 0.0007, "rel_high" = 0.001), # Relinquishment rate of owned dogs to shelter population
+                      # abandonment_rate = switch(input$abandonment_rate, "abandonment_very_low" = 0.0001, "abandonment_low" = 0.001, "abandonment_medium" = 0.003, "abandonment_high" = 0.009), # Abandonment rate of owned dogs to street dog population
+                      abandonment_rate = ((input$abandonment_rate)/100)/12,
+                      # st_adoption = switch(input$st_adoption, "st_ad_low" = 0.004, "st_ad_med" = 0.007, "st_ad_high" = 0.01), # Adoption rate of street dogs to owned dog population
+                      st_adoption = ((input$st_adoption)/100)/12,
+                      # relinquish_rate = switch(input$relinquish_rate, "rel_low" = 0.0004, "rel_med" = 0.0007, "rel_high" = 0.001), # Relinquishment rate of owned dogs to shelter population
+                      relinquish_rate = ((input$relinquish_rate)/100)/12,
+                      # shelter_adoption_rate = switch(input$shelter_adoption_rate, "shelter_adoption_low" = 0.005, "shelter_adoption_medium" = 0.025, "shelter_adoption_high" = 0.0475, "shelter_adoption_very_high" = 0.08), # Adoption rate of shelter dogs to owned dog popualation
+                      shelter_adoption_rate = ((input$shelter_adoption_rate)/100)/12,
                       shelter_death = 0.008, # Death rate of shelter dogs
                       sheltering =  0, # Rate dogs are moved from street to shelter dog population (sheltering intervention) - not applied in the shiny app
                       cull_rate = 0, # Rate street dogs are removed through culling intervention - not applied in the shiny app
-                      neuter_rate =  (input$neuter_rate)/period) # Rate intact street dogs are moved to neutered street dog population (neutering intervention) corrected for periodicity (annual/continuous)
+                      neuter_rate =  ((input$neuter_rate)/100)/period, # Rate intact street dogs are moved to neutered street dog population (neutering intervention) corrected for periodicity (annual/continuous)
+                      num_neuter = input$num_neuter )
     
-    neuter_rate =  (input$neuter_rate)/period # Rate intact street dogs are moved to neutered street dog population (neutering intervention) corrected for periodicity (annual/continuous)
+    neuter_rate =  ((input$neuter_rate)/100)/period # Rate intact street dogs are moved to neutered street dog population (neutering intervention) corrected for periodicity (annual/continuous)
     
     length = (switch(input$length, "length_5_years" = (12*5), "length_10_years" = (12*10), "length_15_years" = (12*15),
                      "length_25_years" = (12*25), "length_50_years" = (12*50))) # length of simulation, as defined by user
@@ -706,13 +729,14 @@ server <- function(input, output, session) {
     pop_size_table$St <- format(round(pop_size_table$St, 0), nsmall=0)
     pop_size_table$Ne <- format(round(pop_size_table$Ne, 0), nsmall=0)
     pop_size_table$FRD <- format(round(pop_size_table$FRD, 0), nsmall=0)
+    # pop_size_table[, "No_dogs_neutered"] <- format(round(as.numeric(pop_size_table$St) * neuter_rate, 0), nsmall=0)
     # names the columns
     colnames(pop_size_table) <- c("time", "Intact", "Neutered", "Total", "Intact_percentage", "Neutered_percentage")
     # creates dataframe for population size table output at 1 year intervals
     pop_size_table2 <- data.frame(pop_size_table$time, pop_size_table$Intact, pop_size_table$Intact_percentage, pop_size_table$Neutered,
                                   pop_size_table$Neutered_percentage, pop_size_table$Total)
-    # names the columsn
-    colnames(pop_size_table2) <- c("Time (years)", "Intact",  "(%)", "Neutered", "(%)", "Total")
+    # names the columns
+    colnames(pop_size_table2) <- c("Time (years)", "Intact",  "(%)", "Neutered", "(%)", "Total" )
     
     # Calculating the population size change
     FRD_pop <- subset(results, pop =="FRD") # subsetting results for FRD only
@@ -754,6 +778,34 @@ server <- function(input, output, session) {
     # names columns
     colnames(total_costs) <- c("Vet hours/year","Vet nurse hours/year","Dog catcher hours/year", "Total staff hours/year", "Proportional costs (€)")
     
+    # Number of dogs neutered per year/month
+    Number_neutered_table_continuous <- data.frame(format(round(costs_results$time, 0), nsmall=0), format(round(costs_results$No_dogs_neutered, 0), nsmall=0))
+    colnames(Number_neutered_table_continuous) <- c("Time (months)", "Number of dogs neutered/month")
+    Number_neutered_table_annual <- data.frame(format(round(as.numeric(costs_results$time)/12, 0), nsmall=0), format(round(costs_results$No_dogs_neutered, 0), nsmall=0))
+    colnames(Number_neutered_table_annual) <- c("Time (year)", "Number of dogs neutered/year")
+    Number_neutered_table_continuous_2 <- data.frame(format(round(costs_results$time, 0), nsmall=0), input$num_neuter)
+    (colnames(Number_neutered_table_continuous_2) <- c("Time (months)", "Number of dogs neutered/month"))
+    Number_neutered_table_annual_2 <- data.frame(format(round(costs_results$time/12, 0), nsmall=0), input$num_neuter)
+    (colnames(Number_neutered_table_annual_2) <- c("Time (year)", "Number of dogs neutered/year"))
+    
+    # Number_neutered_table_annual$time <- Number_neutered_table_annual$Time / 12
+    
+    Number_neutered_table_percentage <- switch(input$periodicity,
+                                    "periodicity_continuous" = Number_neutered_table_continuous,
+                                    "periodicity_annual" = Number_neutered_table_annual)
+    
+    Number_neutered_table_numeric <- switch(input$periodicity,
+                                               "periodicity_continuous" = Number_neutered_table_continuous_2,
+                                               "periodicity_annual" = Number_neutered_table_annual_2)
+    
+    Number_neutered_table <- switch(input$neut_num_per,
+                                    "percentage_to_neuter" = Number_neutered_table_percentage,
+                                    "number_to_neuter" = Number_neutered_table_numeric)
+    
+    # Number_neutered_table <- switch(input$periodicity,
+    #                                 "periodicity_continuous" = ifelse(input$num_neuter == 0, data.frame(Number_neutered_table_continuous), data.frame(Number_neutered_table_continuous_2)),
+    #                                 "periodicity_annual" = ifelse(input$num_neuter == 0, data.frame(Number_neutered_table_annual), data.frame(Number_neutered_table_annual_2) ) )
+
     #### Welfare analysis ###
     welfare_rows <- seq(0, length, by = 1) # Deletes the rows so only full time-steps are included
     welfare_results <- subset(model_output_max, time %in% welfare_rows) # selects only the rows for months
@@ -771,7 +823,7 @@ server <- function(input, output, session) {
     
     # lists all the objects that will be output from this section of code
     list(pop_estimates=pop_estimates, pop_change_sim = pop_change_sim, pop_change_int=pop_change_int, total_welfare=total_welfare, total_costs=total_costs, results=results, time=results$time, value=results$value, pop=results$pop, fields=fields, proportional_cost=proportional_cost,
-         pop_size_table2 = pop_size_table2)
+         pop_size_table2 = pop_size_table2, Number_neutered_table=Number_neutered_table)
     
   })
   
@@ -780,7 +832,7 @@ server <- function(input, output, session) {
     form_in <- sapply((systems_data()[["fields"]]), function(x) input[[x]])
     form_out <- (systems_data()[["total_costs"]])
     form <- data.frame(input$neuter_rate, input$length, input$int_length, input$periodicity, input$abandonment_rate, input$shelter_adoption_rate, (systems_data()[["proportional_cost"]]), (systems_data()[["total_welfare"]]), (systems_data()[["pop_change_int"]]), (systems_data()[["pop_change_sim"]]))
-    colnames(form) <- c("Neutering coverage (0.5 = 50%)", "Length of simulation", "Length of intervention", "Periodicity of intervention", "Abandonment rate", "Shelter adoption rate", "Proportional costs", "Welfare score", "Population change at end of intervention", "Population change at end of simulation")
+    colnames(form) <- c("Neutering coverage (%)", "Length of simulation", "Length of intervention", "Periodicity of intervention", "Abandonment rate", "Shelter adoption rate", "Proportional costs", "Welfare score", "Population change at end of intervention", "Population change at end of simulation")
     form
   })
   
@@ -815,9 +867,9 @@ server <- function(input, output, session) {
   })
   
   # outputs table of costs
-  output$costs_table <- renderTable({
-    systems_data()[["total_costs"]]
-  })
+  # output$costs_table <- renderTable({
+  #   systems_data()[["total_costs"]]
+  # })
   
   # outputs welfare table
   output$welfare_table <- renderTable({
@@ -828,6 +880,13 @@ server <- function(input, output, session) {
   output$population_estimates <- renderTable({
     systems_data()[["pop_estimates"]]
   })
+  
+  # outputs table of number of dogs neutered per month/year
+  output$Number_neutered_table_output <-  renderTable({
+    systems_data()[["Number_neutered_table"]]
+  })
+  
+  
   
   # outputs an example table for mark-recapture CSV formatting with column and row names
   output$table_example_1 <- renderTable({
@@ -862,6 +921,11 @@ server <- function(input, output, session) {
     
     systems_data()[["pop_size_table2"]]
     
+  })
+  
+  # output number of dogs to be neutered table
+  output$no.neutered_dogs <- renderTable({
+    systems_data()[["no.neutered_dogs"]]
   })
   
 }
