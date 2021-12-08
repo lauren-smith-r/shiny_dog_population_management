@@ -67,10 +67,9 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                     Dogs are usually identified by marking (e.g. with red dye) or by taking photographs of every dog you see.
                     Street surveys are normally carried out by one or two people who travel along a predetermined route covering the study area.
                     These surveyors record every dog that they see by either taking photographs for individual identification, or by marking dogs (e.g. using dye).
-                      For more information on how to conduct street surveys, please see the", strong("'How to conduct a street survey'"), " section and refer to the 
-                      International Companion Animal Management (ICAM) Coalition handbook on Humane Dog Population Management."),
-                                               tags$a("ICAM dog population management handbook",
-                                                      href="https://www.icam-coalition.org/downloads/"), # adds website link to ICAM's guidebook
+                      For more information on how to conduct street surveys, please see the", strong("'How to conduct a street survey'"), " section and refer to",
+                                                 tags$a("ICAM Are we making a difference? A guide to monitoring and evaluation of dog population management interventions",
+                                                        href="https://www.icam-coalition.org/download/are-we-making-a-difference/"),"."), # adds website link to ICAM's guidebook
                                                br(),
                                                
                                                tags$hr(),
@@ -151,14 +150,16 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                br(),
                                                tags$ul( # Creates a bullet pointed list
                                                  tags$li("Record every free-roaming dog that you see. Free-roaming dogs are classified as free-roaming if (i) they are not in an enclosed private property, (ii) not on a lead or (iii) under the control of a person (i.e. not on a lead, but under the watch and responsibility of someone)."),
-                                                 tags$li("You may also be interested in measuring other indicators of management impact, such as the ages and sexes of the dogs, body condition scores, and prevalence of skin conditions or injuries."),
+                                                 tags$li("You may also be interested in measuring other indicators of management impact, such as the ages and sexes of the dogs, body condition scores, and prevalence of skin conditions or injuries. See",
+                                                         tags$a("ICAM's Are we making a difference? A guide to monitoring and evaluation of dog population management interventions",
+                                                                href="https://www.icam-coalition.org/download/are-we-making-a-difference/"), "for more information."),
                                                ),
                                                br(),
                                                p(strong("Using your data to estimate the town/city wide population size")),
                                                tags$ul( # Creates a bullet pointed list
                                                  tags$li("You will need to estimate the size of the population (using either the Lincoln-Petersen estimator or closed mark-recapture) for each of your study areas."),
                                                  tags$li("You can extrapolate this estimate to a city or town wide estimate by taking an average of the number of dogs estimate in each of your study sites and multiplying by the total number of study areas."),
-                                                 tags$li("Alternatively, you can also work out the average number of dogs per km2 and multiply this by the number of km2 in your town/city."),
+                                                 tags$li("Alternatively, you can also work out the average number of dogs per km", tags$sup(2), sep = "", "and multiply this by the number of km", tags$sup(2), sep = "", "in your town/city."),
                                                ),
                                                tags$hr(),
                                                br(),
@@ -242,28 +243,28 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li("Selecting the most appropriate method will depend on whether you wish to estimate the total number of dogs in the area,
                                                            or you simply want to track trends in population size."),
                                                    tags$li("You may need to estimate the total number of dogs in your area if you want to:",
-                                                     tags$ul( # Creates a sub-bullet pointed list
-                                                       tags$li("Plan dog population management interventions, such as those aiming to reduce free-roaming dog population size.
-                                                               You need an estimate of the dog population size so you can plan resources to ensure a high dog population management coverage."),
-                                                       tags$li("Plan public health interventions, such as mass rabies vaccination. You need an estimate of the dog population size so that you
-                                                               can plan resources to ensure a high vaccination coverage.")
-                                                     ),
-                                                   tags$li("Population estimation methods include:"),
                                                            tags$ul( # Creates a sub-bullet pointed list
-                                                              tags$li("Lincoln-Petersen Estimator – method available in this website."),
-                                                              tags$li("Closed mark-recapture – method available in this website."),
-                                                              tags$li(tags$a("Application Super-Duplicates",
-                                                                  href="https://chao.shinyapps.io/SuperDuplicates/"), "as described by ",
-                                                                  tags$a("Tiwari et al (2018).", href="https://www.frontiersin.org/articles/10.3389/fvets.2018.00104/full"), strong("Please note:"),
-                                                                  "this method estimates", strong("70% of the total population."), "If a total population estimate is desired, 
-                                                                  the user must extrapolate from the 70% estimate to give a total population estimate"), # adds website link to Tiwari et al, 2018 paper
-                                                              )
-                                                     ), #  
-                                                   tags$li("You may wish to use simple count methods to monitor trends in population size, for example after you have applied your dog population 
-                                                   management/mass vaccination intervention. Guidance on how to apply simple count methods are available in the ",
-                                                           tags$a("ICAM dog population management handbook",
-                                                                  href="https://www.icam-coalition.org/download/are-we-making-a-difference/") # adds website link to ICAM's guidebook
+                                                             tags$li("Plan dog population management interventions, such as those aiming to reduce free-roaming dog population size.
+                                                               You need an estimate of the dog population size so you can plan resources to ensure a high dog population management coverage."),
+                                                             tags$li("Plan public health interventions, such as mass rabies vaccination. You need an estimate of the dog population size so that you
+                                                               can plan resources to ensure a high vaccination coverage.")
                                                            ),
+                                                           tags$li("Population estimation methods include:"),
+                                                           tags$ul( # Creates a sub-bullet pointed list
+                                                             tags$li("Lincoln-Petersen Estimator – method available in this website."),
+                                                             tags$li("Closed mark-recapture – method available in this website."),
+                                                             tags$li(tags$a("Application Super-Duplicates",
+                                                                            href="https://chao.shinyapps.io/SuperDuplicates/"), "as described by ",
+                                                                     tags$a("Tiwari et al (2018).", href="https://www.frontiersin.org/articles/10.3389/fvets.2018.00104/full"), strong("Please note:"),
+                                                                     "this method estimates", strong("70% of the total population."), "If a total population estimate is desired, 
+                                                                  the user must extrapolate from the 70% estimate to give a total population estimate"), # adds website link to Tiwari et al, 2018 paper
+                                                           )
+                                                   ), #  
+                                                   tags$li("You may wish to use simple count methods to monitor trends in population size, for example after you have applied your dog population 
+                                                   management/mass vaccination intervention. Guidance on how to apply simple count methods are available in  ",
+                                                           tags$a("ICAM's Are we making a difference? A guide to monitoring and evaluation of dog population management interventions",
+                                                                  href="https://www.icam-coalition.org/download/are-we-making-a-difference/"), "." # adds website link to ICAM's guidebook
+                                                   ),
                                                    tags$li("In this website, if you are using photographic methods of identifying dogs, you can use either the Lincoln-Petersen or closed mark-recapture
                                                            method. If you are using a physical marking method (such as red dye), you should use the Lincoln-Petersen method. Note: the Lincoln-Petersen
                                                            method requires two days of surveys and the closed mark-recapture method requires three days of surveys. The closed mark-recapture method 
@@ -273,7 +274,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                              tags$li("The population estimation methods and simple count methods are suitable for both urban and rural areas.")
                                                            )
                                                    )
-                                                    ),
+                                                 ),
                                                  br(),
                                                  tags$li("What time of day should I conduct surveys?"),
                                                  tags$ul( # Creates a sub-bullet pointed list
@@ -284,7 +285,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li("It is important to remember that surveys should be completed without making extra effort to observe dogs in areas where you have seen dogs before, as this can lead to over-estimates 
                                                            of dog population size. You should survey your pre-determined route in an unbiased manner and maintain a consistent effort to observe and record dogs throughout the survey. See the ",
                                                            strong("How to conduct a street survey"), "section of this website and watch our video for more details.")
-                                                   ),
+                                                 ),
                                                  br(),
                                                  tags$li("How much of the survey area should I survey?"),
                                                  tags$ul( # Creates a sub-bullet pointed list
@@ -292,7 +293,10 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                            survey areas, aiming to cover about 10% of the total area."),
                                                    tags$li("Details on how to split a larger area into smaller block are available in the", strong("How to conduct a street survey section of the website."))
                                                  )
-                                               )
+                                               ),
+                                               br(),
+                                               br(),
+                                               br(),
                                       )
                            ),
                            
@@ -300,7 +304,7 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                       tabPanel("User instructions", # adds drop-down list option to second tab
                                                h4(strong("Overview")),
                                                p("Our simulation model allows you to estimate the effect of neutering interventions on your local dog population
-                      by providing you with predictions of the effects on dog population size, welfare, and the proportional costs. These
+                      by providing you with predictions of the effects on dog population size and welfare. These
                        predictions are created by modelling the system of dog populations using mathematical equations. The system of dog 
                        populations considers the interactions between dogs on the street, in shelters, and those that are owned (e.g. pet dogs)."),
                                                p("To get started, ", strong("read the below instructions "), "and start assessing your dog population management impact in the", strong("Assess your impact"), "section."),
@@ -310,10 +314,10 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                tags$ol( # creates a numbered list
                                                  tags$li(h5("Applying input parameters")),
                                                  p("To assess the impact of your interventions, you must first include information about your local dog populations,
-                         whether they have low, medium or high rates of movement, and details of your planned intervention. This simulation model 
+                         the rates at which they move between street, shelter and owned populations, and details of your planned intervention. This simulation model 
                         allows you to assess the effects of", strong(" catch-neuter-release "), ("interventions, but you may also wish simulate the impact of"), strong("responsible 
                         ownership "), "interventions by reducing the rate at which dogs are ", strong("abandoned from homes to the street"), 
-                                                   "and increasing the rate dogs are ", strong("adopted to homes from shelters"),"."),
+                                                   "and increasing the rate dogs are ", strong("adopted to homes from shelters.")),
                                                  p(""),
                                                  br(),
                                                  tags$li(h5("Simulating your results")),
@@ -324,7 +328,8 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                    tags$li(p(strong("'Estimate population size impact'"), " allows you to view the estimated impact 
                         of your intervention on the sizes of (i) the total street dog population (the sum of intact and neutered street dogs), (ii) number of intact (not neutered) street dogs, and (iii) the number
                         of neutered street dogs over time.")),
-                                                   tags$li(p(strong("'Estimated cost and welfare impact'"), " allows you to view the estimated impact of your intervention on welfare and costs in terms of staff-time.")),
+                                                   tags$li(p(strong("'Estimated number of dogs neutered and welfare impact'"), " allows you to view the estimated impact of your intervention on welfare (on a 1 to 5 scale) and
+                                                             the number of dogs neutered per year or month.")),
                                                    tags$li(p(strong("'Log of simulations'"), " allows you to view your previously run simulations, allowing you to compare different interventions.")),
                                                  ),
                                                  br(),
@@ -337,15 +342,10 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                         A negative value indictes a reduction in total population size, a positive value indicates an increase in population size."),
                                                    ),
                                                    br(),
-                                                   tags$li(p(strong("Estimated cost and welfare impact")),
+                                                   tags$li(p(strong("Estimated welfare impact")),
                                                            p("Welfare impact is scored on a 1 to 5 scale, where 5 indicates the highest possible welfare. The scoring is based on the proportion of dogs that are
                         kept in shelters, owned, and intact street or neutered street."),
-                                                           p("The simulation provides a means of comparing the resources required for your interventions by estimating the staff-time (veterinarians, veterinary nurses, and dog catchers) required to complete the intervention.
-                      Proportional staff costs are calculated using these estimations, allowing you to compare costs between different interventions.
-                        The cost estimations provided", strong(em("do not")), "estimate the true staff costs for your intervention, as these vary depending on the country. The cost estimations", strong(em("do not")),
-                                                             "incorporate the full costs of the intervention, as many costs are not accounted for (e.g. equipment,
-                      logistical costs, facilities). "),
-                                                           p("For more information on the cost and welfare scoring, see", em("Smith L (2020). Chapter 5: Assessing the effectivenes of 
+                                                           p("For more information on the welfare scoring, see", em("Smith L (2020). Chapter 5: Assessing the effectivenes of 
                         dog population management through systems modelling. PhD Thesis. The University of Leeds.")),
                                                    ),
                                                    br(),
@@ -355,7 +355,8 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                  br(),
                                                  br(),
                                                  h5(strong("How to assess your impact")),
-                                                 HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/xqdf3f3MMhI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'), # adds link to youtube video
+                                                 HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/ib3IsCkdvsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+                                                 # HTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/xqdf3f3MMhI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'), # adds link to youtube video
                                                  br(),
                                                  br(),
                                                  br(),
@@ -375,8 +376,8 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                           tableOutput("population_estimates"), # outputs table of results for population size change
                                                           tableOutput("pop_size_table"), # outputs table of results of dog population size for every year simulated
                                                           tableOutput("no.neutered_dogs")
-                                                ),
-                                                 tabPanel("Estimated cost and welfare impact", # second tab of results "Estimated cost and welfare impact"
+                                                 ),
+                                                 tabPanel("Estimated number of dogs neutered and welfare impact", # second tab of results "Estimated cost and welfare impact"
                                                           # tableOutput("costs_table"), # outputs table of estimated costs
                                                           tableOutput("welfare_table"), # outputs table of estimated welfare impact
                                                           tableOutput("Number_neutered_table_output") # outputs table of number of dogs needed to be neutered per month/year
@@ -397,55 +398,44 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                         h4("Input parameters"),
                                                         
                                                         # numeric inputs of the different population sizes, starts with value = 
-                                                        numericInput("St", label = h4("Provide an estimate of the number of ", strong("intact street"), "dogs in the population."), value = 23650), # test value 23650
-                                                        numericInput("Ne", label = h4("Provide an estimate of the number of ", strong("neutered street"), "dogs in the population."), value = 0),
-                                                        numericInput("Sh", label = h4("Provide an estimate of the number of ", strong("dogs in shelters"), "in the population."), value = 2086), # test value 2086
-                                                        numericInput("Ow", label = h4("Provide an estimate of the number of ", strong("owned dogs"), "in the population."), value = 98358) # test value 98358
+                                                        numericInput("St", label = h5("Provide an estimate of the number of ", strong(em("intact street")), "dogs in the population."), value = 0), # test value 23650
+                                                        numericInput("Ne", label = h5("Provide an estimate of the number of ", strong(em("neutered street")), "dogs in the population."), value = 0),
+                                                        numericInput("Sh", label = h5("Provide an estimate of the number of ", strong(em("dogs in shelters")), "in the population."), value = 0), # test value 2086
+                                                        numericInput("Ow", label = h5("Provide an estimate of the number of ", strong(em("owned dogs")), "in the population."), value = 0) # test value 98358
                                                  ),
                                                  
                                                  column(4, offset = 1, # sets second column of input parameters
                                                         
                                                         # allows user to input low-high rates using radiobuttons
-                                                        radioButtons("r_st", h4("How fast does your street dog population grow (e.g. through births and immigration)?"), 
+                                                        radioButtons("r_st", h5("What is your street dog population's capacity to grow in the", strong(em("absence")), "of population management (e.g. through births and immigration)?"), 
                                                                      choices = list("Slow" = "r_st_low", "Medium" = "r_st_med","Fast" = "r_st_high"), select = "r_st_med"),
-                                                        # radioButtons("abandonment_rate", h4("Estimated rate dogs are abandoned from homes to the street *"),
-                                                        #              choices = list("Very Low" = "abandonment_very_low", "Low" = "abandonment_low", "Medium" = "abandonment_medium",
-                                                        #                             "High" = "abandonment_high"), selected = "abandonment_medium"),
-                                                        sliderInput("abandonment_rate", label = h4("Percentage (%) of owned dogs that are abandoned from homes to the street per year*"), min = 0,
+                                                        sliderInput("abandonment_rate", label = h5("Percentage (%) of owned dogs that are abandoned from homes to the street per year*"), min = 0,
                                                                     max = 100, value = 5, step = (0.005*100)),
-                                                        # radioButtons("st_adoption", h4("Estimated rate dogs are adopted to home from the street"),
-                                                        #              choices = list("Low" = "st_ad_low", "Medium" = "st_ad_med",
-                                                        #                             "High" = "st_ad_high"), selected = "st_ad_med"),
-                                                        sliderInput("st_adoption", label = h4("Percentage (%) of street dogs adopted to homes from the street per year"), min = 0,
+                                                        sliderInput("st_adoption", label = h5("Percentage (%) of street dogs adopted to homes from the street per year"), min = 0,
                                                                     max = 1*100, value = 0.08*100, step = 0.005*100),
-                                                        # radioButtons("relinquish_rate", h4("Estimated rate dogs relinquished from homes to the shelters"),
-                                                        #              choices = list("Low" = "rel_low", "Medium" = "rel_med",
-                                                        #                             "High" = "rel_high"), selected = "rel_med"),
-                                                        sliderInput("relinquish_rate", label = h4("Percentage (%) owned dogs that are relinquished to shelters per year"), min = 0,
+                                                        sliderInput("relinquish_rate", label = h5("Percentage (%) owned dogs that are relinquished to shelters per year"), min = 0,
                                                                     max = 100, value = 0.008*100, step = 0.0005*100),
-                                                        # radioButtons("shelter_adoption_rate", h4("Estimated rate dogs are adopted from local shelters **"),
-                                                        #              choices = list("Low" = "shelter_adoption_low", "Medium" = "shelter_adoption_medium",
-                                                        #                             "High" = "shelter_adoption_high", "Very high" = "shelter_adoption_very_high"), selected = "shelter_adoption_medium"),
-                                                        sliderInput("shelter_adoption_rate", label = h4("Percentage (%) of shelter dog population that is adopted from shelters to homes per year"), min = 0,
+                                                        sliderInput("shelter_adoption_rate", label = h5("Percentage (%) of shelter dog population that is adopted from shelters to homes per year"), min = 0,
                                                                     max = 1*100, value = 0.3*100, step = 0.05*100),
                                                         p("* select low rates to simulate responsible ownership interventions"), # adds notes on how to apply a responsible ownership intervention
                                                         p("** select high rates to simulate responsible ownership interventions")
                                                  ),
                                                  
                                                  column(4, # third column
-                                                        radioButtons("neut_num_per", h4("Select whether you would like to simulate an intervention by neutering a:"),
+                                                        radioButtons("neut_num_per", h5("Select whether you would like to simulate an intervention by neutering a:"),
                                                                      choices = list("(a) percentage of the intact dog population (e.g. 50% per year)" = "percentage_to_neuter",
                                                                                     "(b) number of intact dogs (e.g. 1000 dogs per year)" = "number_to_neuter"),
-                                                        selected = "percentage_to_neuter"),
+                                                                     selected = "percentage_to_neuter"),
                                                         p("Input below either (a) percentage of the intact dog population, or (b) number of intact dogs to be neutered."),
                                                         # allows user to select value between 0 and 1 using a slider at 0.05 step-size intervals
-                                                        sliderInput("neuter_rate", label = h4("(a) percentage (%) of intact dog population you aim to neuter over one year ***"), min = 0,
+                                                        sliderInput("neuter_rate", label = h5("(a) percentage (%) of intact dog population you aim to neuter over one year ***"), min = 0,
                                                                     max = 100, value = 0, step = 1),
-                                                        numericInput("num_neuter", label = h4("(b) number of intact dogs you aim to neuter per month (select continuously below)
-                                                                                              or year (select annually below ***"), value = 0),
+                                                        numericInput("num_neuter", label = h5("(b) number of intact dogs you aim to neuter per month (select continuously below)
+                                                                                              or year (select annually below ***",
+                                                                                              p("If inputting the % of population to be neutered, please put 0 in this box.")), value = 0),
                                                         
                                                         # adds radio-button options for intervention input parameters
-                                                        radioButtons("int_length", h4("How many years do you plan to neuter this percentage of the intact population each year?"), 
+                                                        radioButtons("int_length", h5("How many years do you plan to neuter this percentage of the intact population each year?"), 
                                                                      choices = list("1 year" = "int_length_1_year",
                                                                                     "2 years" = "int_length_2_years",
                                                                                     "3 years" = "int_length_3_years",
@@ -454,12 +444,12 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                                                     "Ongoing (continuous intervention)" = "int_length_continuous"),
                                                                      selected = "int_length_5_years"),
                                                         
-                                                        radioButtons("periodicity", h4("Over what timeline do you plan to neuter dogs (i.e. neutering periodicity)?"),
+                                                        radioButtons("periodicity", h5("Over what timeline do you plan to neuter dogs (i.e. neutering periodicity)?"),
                                                                      choices = list("Continuously (neutering dogs each month throughout the year)" = "periodicity_continuous",
                                                                                     "Annually (one neutering event per year)" = "periodicity_annual"),
                                                                      selected = "periodicity_annual"),
                                                         
-                                                        radioButtons("length", h4("How long would you like the simulation to run for?"),
+                                                        radioButtons("length", h5("How long would you like the simulation to run for?"),
                                                                      choices = list("5 years" = "length_5_years", "10 years" = "length_10_years",
                                                                                     "15 years" = "length_15_years", "25 years" = "length_25_years",
                                                                                     "50 years" = "length_50_years"), selected = "length_5_years"),
@@ -472,6 +462,9 @@ ui <- fluidPage(theme = shinytheme("flatly"), # sets website theme
                                                  
                                                  
                                                  br(),
+                                                 h5(em("Please note that this simulation is a research tool. It cannot guarantee any predicted outcome, but instead provides an estimate of the possible effects of an intervention and a means
+                            of comparing different interventions. Users of the tool do so at their own risk.  The University of Leeds is not liable for any use of the tool by any users whatsoever."))
+                                                 
                                                )
                                       )
                            ),
@@ -594,7 +587,7 @@ server <- function(input, output, session) {
   systems_data <- eventReactive(input$go, { # creates a reactive object - below script is run when "go" is clicked
     
     # This section of code creates the lookup function for the death rate of neutered dogs
-    x.stock <- seq(0, 20000, by = 2000)
+    x.stock <- seq(0, (input$St + input$Ne), by = (input$St + input$Ne)/10)
     y.rate <- c(0.019, 0.0192, 0.0194, 0.0196, 0.0199, 0.0202, 0.0204, 0.0208, 0.022, 0.026, 0.032)
     my_death_rate_function <- approxfun(x=x.stock, y=y.rate, rule = 2)
     
@@ -636,8 +629,8 @@ server <- function(input, output, session) {
     # list of input parameters for the above systems model
     parameters = list(r_st = switch(input$r_st, "r_st_low" = 0.01, "r_st_med" = 0.025, "r_st_high" = 0.04), # Maximum growth rate of street dog population
                       r_ow = 0.07, # Maximum growth rate of owned dog population
-                      K_st=input$St, # Carrying capacity of street dog population
-                      K_ow=input$Ow, # Carrying capacity of owned dog population
+                      K_st= input$St + input$Ne, # Carrying capacity of street dog population
+                      K_ow=ifelse(input$Ow == 0, 1, input$Ow), # Carrying capacity of owned dog population
                       # abandonment_rate = switch(input$abandonment_rate, "abandonment_very_low" = 0.0001, "abandonment_low" = 0.001, "abandonment_medium" = 0.003, "abandonment_high" = 0.009), # Abandonment rate of owned dogs to street dog population
                       abandonment_rate = ((input$abandonment_rate)/100)/12,
                       # st_adoption = switch(input$st_adoption, "st_ad_low" = 0.004, "st_ad_med" = 0.007, "st_ad_high" = 0.01), # Adoption rate of street dogs to owned dog population
@@ -791,12 +784,12 @@ server <- function(input, output, session) {
     # Number_neutered_table_annual$time <- Number_neutered_table_annual$Time / 12
     
     Number_neutered_table_percentage <- switch(input$periodicity,
-                                    "periodicity_continuous" = Number_neutered_table_continuous,
-                                    "periodicity_annual" = Number_neutered_table_annual)
+                                               "periodicity_continuous" = Number_neutered_table_continuous,
+                                               "periodicity_annual" = Number_neutered_table_annual)
     
     Number_neutered_table_numeric <- switch(input$periodicity,
-                                               "periodicity_continuous" = Number_neutered_table_continuous_2,
-                                               "periodicity_annual" = Number_neutered_table_annual_2)
+                                            "periodicity_continuous" = Number_neutered_table_continuous_2,
+                                            "periodicity_annual" = Number_neutered_table_annual_2)
     
     Number_neutered_table <- switch(input$neut_num_per,
                                     "percentage_to_neuter" = Number_neutered_table_percentage,
@@ -805,7 +798,7 @@ server <- function(input, output, session) {
     # Number_neutered_table <- switch(input$periodicity,
     #                                 "periodicity_continuous" = ifelse(input$num_neuter == 0, data.frame(Number_neutered_table_continuous), data.frame(Number_neutered_table_continuous_2)),
     #                                 "periodicity_annual" = ifelse(input$num_neuter == 0, data.frame(Number_neutered_table_annual), data.frame(Number_neutered_table_annual_2) ) )
-
+    
     #### Welfare analysis ###
     welfare_rows <- seq(0, length, by = 1) # Deletes the rows so only full time-steps are included
     welfare_results <- subset(model_output_max, time %in% welfare_rows) # selects only the rows for months
@@ -818,7 +811,7 @@ server <- function(input, output, session) {
     welfare_results[, "score_overall"] <- (welfare_results$score_intact + welfare_results$score_neutered + welfare_results$score_shelter + welfare_results$score_owned)/(welfare_results$St + welfare_results$Ne + welfare_results$Sh + welfare_results$Ow)
     total_welfare <- format(round((sum(welfare_results$score_overall))/length, 2), nsmall=2) # formats value to 0 decimal places
     total_welfare <- data.frame(total_welfare) # creates a dataframe for total welfare
-    colnames(total_welfare) <- ("Welfare score") # names columns
+    colnames(total_welfare) <- ("Welfare score (max 5)") # names columns
     fields <- c("neuter_rate", "length", "periodicity")
     
     # lists all the objects that will be output from this section of code
@@ -831,8 +824,8 @@ server <- function(input, output, session) {
   form_Data <- reactive({
     form_in <- sapply((systems_data()[["fields"]]), function(x) input[[x]])
     form_out <- (systems_data()[["total_costs"]])
-    form <- data.frame(input$neuter_rate, input$length, input$int_length, input$periodicity, input$abandonment_rate, input$shelter_adoption_rate, (systems_data()[["proportional_cost"]]), (systems_data()[["total_welfare"]]), (systems_data()[["pop_change_int"]]), (systems_data()[["pop_change_sim"]]))
-    colnames(form) <- c("Neutering coverage (%)", "Length of simulation", "Length of intervention", "Periodicity of intervention", "Abandonment rate", "Shelter adoption rate", "Proportional costs", "Welfare score", "Population change at end of intervention", "Population change at end of simulation")
+    form <- data.frame(input$neuter_rate, input$length, input$int_length, input$periodicity, input$abandonment_rate, input$shelter_adoption_rate, (systems_data()[["total_welfare"]]), (systems_data()[["pop_change_int"]]), (systems_data()[["pop_change_sim"]]))
+    colnames(form) <- c("Neutering coverage (%)", "Length of simulation", "Length of intervention", "Periodicity of intervention", "Abandonment rate (% per year)", "Shelter adoption rate (% per year)", "Welfare score (max 5)", "Population change at end of intervention", "Population change at end of simulation")
     form
   })
   
